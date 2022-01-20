@@ -1,10 +1,15 @@
 'use strict';
 
-const { start } = require('./src/server.js');
-const { db } = require('./src/models');
+const { start } = require('./lib/server.js');
+const { sequelize } = require('./lib/auth/models/users');
+// const { db } = require('./lib/models');
 
 const PORT = process.env.PORT || 3000;
 
-db.sync()
+// db.sync()
+//   .then(() => start(PORT))
+//   .catch(err => console.log(err));
+
+sequelize.sync()
   .then(() => start(PORT))
   .catch(err => console.log(err));
